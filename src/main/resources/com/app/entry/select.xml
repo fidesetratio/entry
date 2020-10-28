@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace='com.app.dao.BankMapper'>
+<mapper namespace='com.app.dao.BacDao'>
 
-<resultMap id="Bank" type="com.app.domain.Bank" >
-        <result column="lbn_nama" property="lbn_nama" jdbcType="VARCHAR" />
-        <result column="lbn_id" property="lbn_id" />
-</resultMap>
-    
-    
-	<select id="findAll" resultMap="Bank">
-		select * from eka.lst_bank where rownum=1
-  	</select>
+<select id="selectRegional" resultType="java.util.HashMap" parameterType="String">
+		SELECT EKA.MST_AGENT.LCA_ID "STRBRANCH", 
+		EKA.MST_AGENT.LWK_ID "STRWILAYAH", 
+		EKA.MST_AGENT.LSRG_ID "STRREGION", 
+		EKA.MST_AGENT.LCA_ID || EKA.MST_AGENT.LWK_ID "STRAGENTBRANCH"
+		FROM EKA.MST_AGENT
+		WHERE EKA.MST_AGENT.MSAG_ID = ${kodeAgen}
+</select>
+  	
+<select id="selectSeqNoSpaj" resultType="String" parameterType="String"> 		 
+		select EKA.PAC_COUNTER.GET_NO_SPAJ_SEQ ('${lca_id}') from DUAL
+</select>
+ <select id="selectSequenceClientID" resultType="String" parameterType="String"> 		 
+		SELECT EKA.PAC_COUNTER.GET_CLIENT_ID () FROM DUAL 	
+</select>
+	
+	
+  	
 </mapper>

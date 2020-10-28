@@ -1,5 +1,6 @@
 package com.app.rest;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,19 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dao.BankMapper;
+import com.app.dao.BacDao;
 import com.app.domain.Bank;
 @RestController
 @RequestMapping(value="/api")
 public class EntryRest {
 	
 	  @Autowired
-	  private BankMapper bankMapper;
+	  private BacDao bacDao;
 	 
 		@GetMapping("/test")
-		public List<Bank> test() {
+		public HashMap test() {
 
-			return bankMapper.findAll();
+			return bacDao.selectRegional("000921");
 			
 		}
 	  	

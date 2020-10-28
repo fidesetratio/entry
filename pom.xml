@@ -74,9 +74,12 @@
             <scope>runtime</scope>
         </dependency>
         
-        
+        <dependency>
+		   <groupId>com.ekalife.elions</groupId>
+		  <artifactId>model</artifactId>
+		  <version>0.0.1-SNAPSHOT</version>
+        </dependency>
   </dependencies>
-  
    <build>
         <plugins>
             <plugin>
